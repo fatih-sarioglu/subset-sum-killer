@@ -1,0 +1,16 @@
+Total trials: 300
+Workers: 8
+Sizes: [10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000]
+  n=   10 done (30 trials)  |  total elapsed: 0.2s
+  n=   20 done (30 trials)  |  total elapsed: 0.3s
+  n=   50 done (30 trials)  |  total elapsed: 0.6s
+  n=  100 done (30 trials)  |  total elapsed: 2.2s
+  n=  200 done (30 trials)  |  total elapsed: 9.3s
+  n=  500 done (30 trials)  |  total elapsed: 64.4s
+  n= 1000 done (30 trials)  |  total elapsed: 366.2s
+  n= 2000 done (30 trials)  |  total elapsed: 1618.7s
+  n= 5000 done (30 trials)  |  total elapsed: 9836.4s
+  n=10000 done (30 trials)  |  total elapsed: 44034.0s
+
+All done in 44034.1s (733.9 min)
+Wrote results to C:\Users\ftihs\Desktop\Senior Year\CS301\Project\subset-sum-killer\data\performance_data.csv

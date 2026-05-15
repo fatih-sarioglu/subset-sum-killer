@@ -1,0 +1,14 @@
+Total (n, trial) pairs: 150
+Epsilons per pair: 4  ->  600 rows
+Workers: 8
+Sizes: [10, 15, 20, 25, 30]
+Epsilons: [0.5, 0.1, 0.01, 0.001]
+
+  n= 10 done (30 trials)  |  total elapsed: 0.3s
+  n= 15 done (30 trials)  |  total elapsed: 0.6s
+  n= 20 done (30 trials)  |  total elapsed: 10.6s
+  n= 25 done (30 trials)  |  total elapsed: 644.6s
+  n= 30 done (30 trials)  |  total elapsed: 27331.6s
+
+All done in 27331.7s (455.5 min)
+Wrote results to C:\Users\ftihs\Desktop\Senior Year\CS301\Project\subset-sum-killer\data\quality_data.csv

@@ -1,11 +1,7 @@
 """
-Functional testing for the Subset Sum implementations.
+Functional tests for the Subset Sum implementations.
 
-Applies the testing methodology covered in the CS301 Test Design lecture
-(Yenigün, slides 6–8):
-  - Black-box equivalence-class partitioning and boundary-value analysis
-  - White-box statement/branch coverage via targeted code-path tests
-  - Cross-validation with brute force as oracle (random small instances)
+Mixes hand-picked cases, helper checks, and random cross-validation.
 """
 
 from dataclasses import dataclass
@@ -17,7 +13,7 @@ from sample_generator import generate_instance
 
 
 # ----------------------------------------------------------------------------
-# Phase 1: Hand-designed test cases
+# Phase 1: Hand-designed cases
 # ----------------------------------------------------------------------------
 
 @dataclass
@@ -123,7 +119,7 @@ def print_results_table(results: List[TestResult]) -> None:
 
 
 # ----------------------------------------------------------------------------
-# Phase 2: Direct unit tests on helper functions
+# Phase 2: Helper unit tests
 # ----------------------------------------------------------------------------
 
 def run_helper_unit_tests() -> Tuple[int, int]:
@@ -159,7 +155,7 @@ def run_helper_unit_tests() -> Tuple[int, int]:
 
 
 # ----------------------------------------------------------------------------
-# Phase 3: Random cross-validation (brute force as oracle)
+# Phase 3: Random cross-validation
 # ----------------------------------------------------------------------------
 
 def random_cross_validation(
@@ -169,9 +165,8 @@ def random_cross_validation(
     max_weight: int = 1000,
     seed_base: int = 2_000_000,
 ) -> dict:
-    """Verifies, on many small random instances, that the heuristic obeys
-    its three runtime invariants. Uses a different seed_base from Sections 6
-    and 7 to draw fresh instances."""
+    """Checks invariants on many small random instances.
+    Uses a separate seed_base to avoid overlapping other experiments."""
     total = 0
     failures = []
     for n in n_values:

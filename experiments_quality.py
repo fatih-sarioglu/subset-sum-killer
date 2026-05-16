@@ -1,23 +1,12 @@
 """
-Quality testing for APPROX-SUBSET-SUM.
+Quality checks for APPROX-SUBSET-SUM.
 
-For each (n, trial) pair:
-  - Generate one instance.
-  - Run brute force once to get the exact optimum z*.
-  - For each epsilon, run the heuristic and record the approximation ratio.
-
-The exact optimum does not depend on epsilon, so brute force runs once per
-(n, trial), not once per (n, trial, epsilon). This is the key cost saving
-that makes n=30 feasible.
+For each instance we compute the exact optimum once, then run the heuristic
+for several eps values and record ratios and feasibility.
 
 CSV columns:
-  n, trial, seed, epsilon, exact_sum, approx_sum, ratio,
-  bound_lower, bound_satisfied, feasible
-
-  ratio           = approx_sum / exact_sum     (should lie in [1/(1+eps), 1])
-  bound_lower     = 1 / (1 + epsilon)          (the FPTAS lower bound on ratio)
-  bound_satisfied = (ratio >= bound_lower)     (theoretical guarantee - should be 1 always)
-  feasible        = (approx_sum <= t and approx_sum <= exact_sum)  (sanity check)
+    n, trial, seed, epsilon, exact_sum, approx_sum, ratio,
+    bound_lower, bound_satisfied, feasible
 """
 
 import csv
@@ -32,10 +21,7 @@ from heuristic import approx_subset_sum
 
 
 def run_trial(n: int, trial: int, seed: int, epsilons: List[float], max_weight: int) -> List[dict]:
-    """
-    One worker task: generate one instance, run brute force once, then run the
-    heuristic once per epsilon. Returns one row per epsilon.
-    """
+    """Generate one instance, compute exact once, then run per epsilon."""
     S, t = generate_instance(n=n, max_weight=max_weight, seed=seed)
 
     # Exact optimum (independent of epsilon)
@@ -78,9 +64,7 @@ def run_quality_experiment(
     seed_base: int = 1_000_000,   # offset from performance seeds so instances differ
     num_workers: int = 8,
 ) -> None:
-    """
-    Run the quality experiment in parallel across (n, trial) pairs.
-    """
+    """Run the quality experiment in parallel across (n, trial) pairs."""
     output_path = Path(output_csv)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 

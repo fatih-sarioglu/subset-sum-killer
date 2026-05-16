@@ -3,19 +3,14 @@ import time
 from typing import List, Tuple
 
 def trim(L: List[int], delta: float) -> List[int]:
-    """
-    Trim a sorted list L by parameter delta (0 < delta < 1).
-    Keeps element y only if y > last_kept * (1 + delta).
-    
-    Reference: CLRS, page 1130.
-    """
+    """Trim a sorted list L by factor delta (0 < delta < 1)."""
     if not L:
         return []
     
     L_trimmed = [L[0]]
     last = L[0]
     for i in range(1, len(L)):
-        # L is sorted, so L[i] >= last
+        # Keep values spaced by a (1 + delta) factor.
         if L[i] > last * (1 + delta):
             L_trimmed.append(L[i])
             last = L[i]
@@ -24,12 +19,7 @@ def trim(L: List[int], delta: float) -> List[int]:
 
 
 def merge_lists(L1: List[int], L2: List[int]) -> List[int]:
-    """
-    Merge two sorted lists into one sorted list, removing duplicates.
-    Runs in O(|L1| + |L2|) time.
-    
-    Reference: CLRS, page 1129 (MERGE-LISTS).
-    """
+    """Merge two sorted lists into one, removing duplicates."""
     merged = []
     i, j = 0, 0
     while i < len(L1) and j < len(L2):
@@ -59,31 +49,15 @@ def merge_lists(L1: List[int], L2: List[int]) -> List[int]:
 
 
 def approx_subset_sum(S: List[int], t: int, epsilon: float) -> int:
-    """
-    FPTAS for Subset Sum optimization.
-    Returns z such that z*/(1+epsilon) <= z <= z*, where z* is the true optimum.
-    
-    Reference: CLRS, page 1131 (APPROX-SUBSET-SUM).
-    
-    Args:
-        S: list of positive integers
-        t: target value
-        epsilon: approximation parameter, 0 < epsilon < 1
-    
-    Returns:
-        Approximate maximum subset sum (an integer).
-    """
+    """Approximate subset sum within the (1 + epsilon) factor."""
     n = len(S)
-    L = [0]  # L_0 contains only the empty-subset sum
+    L = [0]
     delta = epsilon / (2 * n)
     
     for i in range(n):
-        # Merge L with (L + x_i)
         L_shifted = [x + S[i] for x in L]
         L = merge_lists(L, L_shifted)
-        # Trim
         L = trim(L, delta)
-        # Remove elements > t
         L = [x for x in L if x <= t]
     
     return max(L)

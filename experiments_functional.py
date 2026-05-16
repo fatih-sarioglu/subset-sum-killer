@@ -6,11 +6,6 @@ Applies the testing methodology covered in the CS301 Test Design lecture
   - Black-box equivalence-class partitioning and boundary-value analysis
   - White-box statement/branch coverage via targeted code-path tests
   - Cross-validation with brute force as oracle (random small instances)
-
-For statement and branch coverage measurement, run:
-    pip install coverage
-    coverage run --branch experiments_functional.py
-    coverage report -m --include="brute_force.py,heuristic.py"
 """
 
 from dataclasses import dataclass
@@ -132,9 +127,6 @@ def print_results_table(results: List[TestResult]) -> None:
 # ----------------------------------------------------------------------------
 
 def run_helper_unit_tests() -> Tuple[int, int]:
-    """Direct unit tests on TRIM and MERGE-LISTS, including the defensive
-    duplicate-skip branches in merge_lists (lines 37->39, 41->43, 45->47,
-    50->52, 54->56) which aren't reached in the algorithm's normal flow."""
     cases = [
         # --- trim ---
         ("trim empty",                    trim([], 0.1),                       []),
@@ -205,7 +197,7 @@ def random_cross_validation(
 
 def main():
     print("=" * 90)
-    print("FUNCTIONAL TESTING — SUBSET SUM")
+    print("FUNCTIONAL TESTING - SUBSET SUM")
     print("=" * 90)
     print()
 

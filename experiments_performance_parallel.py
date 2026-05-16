@@ -108,5 +108,5 @@ if __name__ == "__main__":
         epsilon=0.1,
         max_weight=1000,
         output_csv="data/performance_data.csv",
-        num_workers=8,  # adjust based on your physical core count
+        num_workers=8,
     )

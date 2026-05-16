@@ -41,7 +41,7 @@ def merge_lists(L1: List[int], L2: List[int]) -> List[int]:
             if not merged or merged[-1] != L2[j]:
                 merged.append(L2[j])
             j += 1
-        else:  # equal — take once, advance both
+        else:  # equal - take once, advance both
             if not merged or merged[-1] != L1[i]:
                 merged.append(L1[i])
             i += 1

@@ -16,7 +16,7 @@ CSV columns:
 
   ratio           = approx_sum / exact_sum     (should lie in [1/(1+eps), 1])
   bound_lower     = 1 / (1 + epsilon)          (the FPTAS lower bound on ratio)
-  bound_satisfied = (ratio >= bound_lower)     (theoretical guarantee — should be 1 always)
+  bound_satisfied = (ratio >= bound_lower)     (theoretical guarantee - should be 1 always)
   feasible        = (approx_sum <= t and approx_sum <= exact_sum)  (sanity check)
 """
 

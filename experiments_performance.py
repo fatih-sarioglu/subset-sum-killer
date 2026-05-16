@@ -70,7 +70,7 @@ def run_performance_experiment(
 
 
 if __name__ == "__main__":
-    # Default sweep — adjust as needed
+    # Default sweep - adjust as needed
     N_VALUES = [10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000]
     run_performance_experiment(
         n_values=N_VALUES,
